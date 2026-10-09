@@ -1,0 +1,543 @@
+DATA DIGGER – OUTPUT + REASON
+================================
+
+============================================================
+1. CUSTOMERS TABLE
+============================================================
+
+QUESTION 1:
+Insert at least 5 sample customers into the Customers table.
+
+QUERY USED:
+INSERT INTO Customers
+(CustomerID, Name, Email, Address)
+VALUES
+(1, 'Alice', 'alice@gmail.com', 'Delhi'),
+(2, 'Rahul', 'rahul@gmail.com', 'Mumbai'),
+(3, 'Priya', 'priya@gmail.com', 'Surat'),
+(4, 'Alice', 'alice2@gmail.com', 'Pune'),
+(5, 'Aman', 'aman@gmail.com', 'Ahmedabad');
+
+OUTPUT:
+
++------------+-------+------------------+-----------+
+| CustomerID | Name  | Email            | Address   |
++------------+-------+------------------+-----------+
+|          1 | Alice | alice@gmail.com  | Delhi     |
+|          2 | Rahul | rahul@gmail.com  | Mumbai    |
+|          3 | Priya | priya@gmail.com  | Surat     |
+|          4 | Alice | alice2@gmail.com | Pune      |
+|          5 | Aman  | aman@gmail.com   | Ahmedabad |
++------------+-------+------------------+-----------+
+REASON:
+
+Five sample customers were inserted successfully. CustomerID is the primary key, so each customer has a unique ID.
+
+
+------------------------------------------------------------
+QUESTION 2:
+Retrieve all customer details.
+------------------------------------------------------------
+
+OUTPUT:
+
++------------+-------+------------------+-----------+
+| CustomerID | Name  | Email            | Address   |
++------------+-------+------------------+-----------+
+|          1 | Alice | alice@gmail.com  | Delhi     |
+|          2 | Rahul | rahul@gmail.com  | Mumbai    |
+|          3 | Priya | priya@gmail.com  | Surat     |
+|          4 | Alice | alice2@gmail.com | Pune      |
+|          5 | Aman  | aman@gmail.com   | Ahmedabad |
++------------+-------+------------------+-----------+
+REASON:
+
+SELECT * FROM Customers; retrieves all columns and all records from the Customers table.
+
+
+------------------------------------------------------------
+QUESTION 3:
+Update a customer's address.
+------------------------------------------------------------
+
+QUERY:
+UPDATE Customers
+SET Address = 'Jaipur'
+WHERE CustomerID = 1;
+
+OUTPUT:
+
++------------+-------+------------------+---------+
+| CustomerID | Name  | Email            | Address |
++------------+-------+------------------+---------+
+|          1 | Alice | alice@gmail.com  | Jaipur  |
+|          4 | Alice | alice2@gmail.com | Pune    |
++------------+-------+------------------+---------+
+REASON:
+
+The query updates the address of the customer with CustomerID = 1 to Jaipur. The output shows Alice's updated address as Jaipur.
+
+
+------------------------------------------------------------
+QUESTION 4:
+Delete a customer using their CustomerID.
+------------------------------------------------------------
+
+QUERY:
+DELETE FROM Customers
+WHERE CustomerID = 5;
+
+OUTPUT:
+
+CustomerID 5 (Aman) delete ho gaya.
+
+FINAL CUSTOMERS AFTER DELETE:
+
+
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+|     101 |          1 | 2026-09-20 |     1200.00 |
+|     102 |          2 | 2026-09-18 |     2500.00 |
+|     103 |          3 | 2026-09-15 |     1800.00 |
+|     104 |          4 | 2026-09-10 |     3500.00 |
+|     105 |          1 | 2026-08-20 |      900.00 |
++---------+------------+------------+-------------+
+REASON:
+
+The condition WHERE CustomerID = 5 deletes the customer whose CustomerID is 5. In the inserted Customers table, this customer is Aman.
+
+
+------------------------------------------------------------
+QUESTION 5:
+Display all customers whose name is 'Alice'.
+------------------------------------------------------------
+
+QUESTION SHEET:
+Name = 'Alice'
+
+
+OUTPUT OF CURRENT SQL:
+
++------------+-------+------------------+---------+
+| CustomerID | Name  | Email            | Address |
++------------+-------+------------------+---------+
+|          1 | Alice | alice@gmail.com  | Jaipur  |
+|          4 | Alice | alice2@gmail.com | Pune    |
++------------+-------+------------------+---------+
+REASON:
+
+The query searches for customers whose name is Alice. The inserted Customers table contains two Alice records (CustomerID 1 and 4), so both records appear in the output.
+
+
+============================================================
+2. ORDERS TABLE
+============================================================
+
+QUESTION 1:
+Insert at least 5 sample orders into the Orders table.
+
+OUTPUT:
+
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+|     101 |          1 | 2026-09-20 |     1200.00 |
+|     102 |          2 | 2026-09-18 |     2500.00 |
+|     103 |          3 | 2026-09-15 |     1800.00 |
+|     104 |          4 | 2026-09-10 |     3500.00 |
+|     105 |          1 | 2026-08-20 |      900.00 |
++---------+------------+------------+-------------+
+5 rows in set (0.002 sec)
+REASON:
+
+Five sample orders were inserted. CustomerID is a foreign key, linking each order to a customer in the Customers table.
+
+
+------------------------------------------------------------
+QUESTION 2:
+Retrieve all orders made by a specific customer.
+------------------------------------------------------------
+
+QUERY:
+SELECT *
+FROM Orders
+WHERE CustomerID = 1;
+
+OUTPUT:
+
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+|     101 |          1 | 2026-09-20 |     1200.00 |
+|     105 |          1 | 2026-08-20 |      900.00 |
++---------+------------+------------+-------------+
+2 rows in set (0.010 sec)
+REASON:
+
+The query retrieves all orders for CustomerID = 1. In the inserted Orders table, this customer has OrderID 101 and 105.
+
+
+------------------------------------------------------------
+QUESTION 3:
+Update an order's total amount.
+------------------------------------------------------------
+
+QUERY:
+UPDATE Orders
+SET TotalAmount = 1500.00
+WHERE OrderID = 101;
+
+DELETE FROM Orders
+WHERE OrderID = 105;
+
+OUTPUT:
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+|     101 |          1 | 2026-09-20 |     1500.00 |
+|     102 |          2 | 2026-09-18 |     2500.00 |
+|     103 |          3 | 2026-09-15 |     1800.00 |
+|     104 |          4 | 2026-09-10 |     3500.00 |
++---------+------------+------------+-------------+
+4 rows in set (0.056 sec)
+
+OrderID 101 originally had a total amount of 1200.00. The UPDATE statement changes it to 1500.00. The separate DELETE statement removes OrderID 105.
+
+
+------------------------------------------------------------
+QUESTION 4:
+Delete an order using its OrderID.
+------------------------------------------------------------
+
+QUERY:
+DELETE FROM Orders
+WHERE OrderID = 105;
+
+OUTPUT:
+
+OrderID 105 delete ho gaya.
+
+FINAL ORDERS:
+
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+| 101     | 1          | 2026-09-25 | 1600.00     |
+| 102     | 2          | 2026-09-20 | 2200.00     |
+| 103     | 3          | 2026-09-15 | 800.00      |
+| 104     | 1          | 2026-09-10 | 1200.00     |
++---------+------------+------------+-------------+
+
+REASON:
+
+The condition WHERE OrderID = 105 deletes only order 105.
+
+
+------------------------------------------------------------
+QUESTION 5:
+Retrieve orders placed in the last 30 days.
+------------------------------------------------------------
+
+QUERY:
+SELECT *
+FROM Orders
+WHERE OrderDate >= CURDATE() - INTERVAL 30 DAY;
+
+ASSUMING CURRENT DATE = 2026-09-30
+
+The 30-day cutoff is approximately 2026-08-31, assuming the current date is 2026-09-30.
+
+OUTPUT:
++---------+------------+------------+-------------+
+| OrderID | CustomerID | OrderDate  | TotalAmount |
++---------+------------+------------+-------------+
+|     101 |          1 | 2026-09-20 |     1500.00 |
+|     102 |          2 | 2026-09-18 |     2500.00 |
+|     103 |          3 | 2026-09-15 |     1800.00 |
+|     104 |          4 | 2026-09-10 |     3500.00 |
++---------+------------+------------+-------------+
+REASON:
+
+The displayed orders have dates within the last 30 days of the assumed current date (2026-09-30). Order 105 is not shown because its date is 2026-08-20, which is before the cutoff of 2026-08-31.
+
+
+------------------------------------------------------------
+QUESTION 6:
+Retrieve the highest, lowest, and average order amount using
+aggregate functions.
+------------------------------------------------------------
+
+QUERY:
+SELECT
+MAX(TotalAmount) AS HighestAmount,
+MIN(TotalAmount) AS LowestAmount,
+AVG(TotalAmount) AS AverageAmount
+FROM Orders;
+
+OUTPUT:
+
++---------------+--------------+---------------+
+| HighestAmount | LowestAmount | AverageAmount |
++---------------+--------------+---------------+
+|       3500.00 |      1500.00 |   2325.000000 |
++---------------+--------------+---------------+
+1 row in set (0.032 sec)REASON:
+
+The displayed Orders table contains amounts of 1500.00, 2500.00, 1800.00, and 3500.00. Their sum is 9300.00, and the average is 9300.00 / 4 = 2325.00. MAX() returns 3500.00 and MIN() returns 1500.00.
+
+
+============================================================
+3. PRODUCTS TABLE
+============================================================
+
+QUESTION 1:
+Insert at least 5 sample products.
+
+OUTPUT:
+
++-----------+-------------+----------+-------+
+| ProductID | ProductName | Price    | Stock |
++-----------+-------------+----------+-------+
+|       201 | Laptop      | 55000.00 |    10 |
+|       202 | Mobile      | 20000.00 |    15 |
+|       203 | Headphones  |  1500.00 |    25 |
+|       204 | Keyboard    |   900.00 |     0 |
+|       205 | Mouse       |   700.00 |    20 |
++-----------+-------------+----------+-------+
+5 rows in set (0.001 sec)
+REASON:
+
+Five sample products were inserted. ProductID is the primary key, so each product has a unique ID.
+
+
+------------------------------------------------------------
+QUESTION 2:
+Retrieve all products sorted by price in descending order.
+------------------------------------------------------------
+
+OUTPUT:
++-----------+-------------+----------+-------+
+| ProductID | ProductName | Price    | Stock |
++-----------+-------------+----------+-------+
+|       201 | Laptop      | 55000.00 |    10 |
+|       202 | Mobile      | 20000.00 |    15 |
+|       203 | Headphones  |  1500.00 |    25 |
+|       204 | Keyboard    |   900.00 |     0 |
+|       205 | Mouse       |   700.00 |    20 |
++-----------+-------------+----------+-------+
+REASON:
+
+ORDER BY Price DESC sorts the products from the highest price to the lowest price.
+
+
+------------------------------------------------------------
+QUESTION 3:
+Update the price of a specific product.
+------------------------------------------------------------
+
+QUERY:
+UPDATE Products
+SET Price = 1700.00
+WHERE ProductID = 203;
+OUTPUT:
+
++-----------+-------------+---------+-------+
+| ProductID | ProductName | Price   | Stock |
++-----------+-------------+---------+-------+
+|       203 | Headphones  | 1700.00 |    25 |
+|       205 | Mouse       |  700.00 |    20 |
++-----------+-------------+---------+-------+
+2 rows in set (0.016 sec)
+REASON:
+
+The inserted Products table shows ProductID 203 as Headphones with a price of 1500.00. The UPDATE statement changes this product's price to 1700.00.
+
+
+------------------------------------------------------------
+QUESTION 4:
+Delete a product if it is out of stock.
+------------------------------------------------------------
+
+QUERY:
+DELETE FROM Products
+WHERE Stock = 0;
+OUTPUT:
+
+ProductID 204 is the Keyboard, and its Stock value is 0. The DELETE statement removes this out-of-stock product.
+
+FINAL PRODUCTS:
+
++-----------+-------------+----------+-------+
+| ProductID | ProductName | Price    | Stock |
++-----------+-------------+----------+-------+
+|       201 | Laptop      | 55000.00 |    10 |
+|       202 | Mobile      | 20000.00 |    15 |
+|       203 | Headphones  |  1700.00 |    25 |
+|       205 | Mouse       |   700.00 |    20 |
++-----------+-------------+----------+-------+
+REASON:
+
+ProductID 204 (Keyboard) had Stock = 0, so it met the condition and was deleted. The remaining products are Laptop, Mobile, Headphones, and Mouse.
+
+
+------------------------------------------------------------
+QUESTION 5:
+Retrieve products whose price is between 500 and 2000.
+------------------------------------------------------------
+
+QUERY:
+WHERE Price BETWEEN 500 AND 2000;
+
+OUTPUT:
+
++-----------+-------------+---------+-------+
+| ProductID | ProductName | Price   | Stock |
++-----------+-------------+---------+-------+
+|       203 | Headphones  | 1700.00 |    25 |
+|       205 | Mouse       |  700.00 |    20 |
++-----------+-------------+---------+-------+
+REASON:
+
+BETWEEN 500 AND 2000 selects products priced from 500 to 2000, including both endpoints. Headphones costs 1700.00 and Mouse costs 700.00, so both fall within this range.
+
+
+------------------------------------------------------------
+QUESTION 6:
+Retrieve the most expensive and cheapest product using MAX() and MIN().
+------------------------------------------------------------
+
+OUTPUT:
+
++----------------------------+-----------------------+
+| Most_Expensive_Product_Price | Cheapest_Product_Price |
++----------------------------+-----------------------+
+| 55000.00                   | 700.00                |
++----------------------------+-----------------------+
+
+REASON:
+
+MAX(Price) returns the highest product price, 55000.00 (Laptop). MIN(Price) returns the lowest product price, 700.00 (Mouse).
+
+NOTE:
+Current SQL query sirf prices return karti hai, product names nahi.
+
+
+============================================================
+4. ORDERDETAILS TABLE
+============================================================
+
+QUESTION 1:
+Insert at least 5 sample records into OrderDetails.
+
+OUTPUT:
+
++---------------+---------+-----------+----------+----------+
+| OrderDetailID | OrderID | ProductID | Quantity | SubTotal |
++---------------+---------+-----------+----------+----------+
+|           301 |     101 |       202 |        1 | 20000.00 |
+|           302 |     101 |       203 |        2 |  3000.00 |
+|           303 |     102 |       205 |        3 |  2100.00 |
+|           304 |     103 |       202 |        1 | 20000.00 |
+|           305 |     104 |       203 |        4 |  6800.00 |
++---------------+---------+-----------+----------+----------+
+5 rows in set (0.002 sec)
+REASON:
+
+Five sample order-detail records were inserted. OrderID and ProductID are foreign keys that link each record to the Orders and Products tables.
+
+
+------------------------------------------------------------
+QUESTION 2:
+Retrieve all order details for a specific order.
+------------------------------------------------------------
+
+QUERY:
+SELECT *
+FROM OrderDetails
+WHERE OrderID = 301;
+
+OUTPUT:
+
++---------------+---------+-----------+----------+----------+
+| OrderDetailID | OrderID | ProductID | Quantity | SubTotal |
++---------------+---------+-----------+----------+----------+
+|           301 |     101 |       202 |        1 | 20000.00 |
++---------------+---------+-----------+----------+----------+
+1 row in set (0.002 sec)REASON:
+
+The output shows the order-detail record with OrderDetailID 301, which belongs to OrderID 101 and has ProductID 202 (Mobile) with quantity 1. The other record for OrderID 101 in the inserted data is OrderDetailID 302 (ProductID 203, Headphones) with quantity 2; it is not shown in this output.
+
+
+------------------------------------------------------------
+QUESTION 3:
+Calculate the total revenue generated from all orders using SUM().
+------------------------------------------------------------
+
+QUERY:
+SELECT SUM(SubTotal) AS TotalRevenue
+FROM OrderDetails;
+OUTPUT:
+
++--------------+
+| TotalRevenue |
++--------------+
+|     51900.00 |
++--------------+
+REASON:
+
+The SubTotal values in the inserted OrderDetails table are 20000.00, 3000.00, 2100.00, 20000.00, and 6800.00. Their sum is 51900.00. SUM() adds all SubTotal values.
+
+
+------------------------------------------------------------
+QUESTION 4:
+Retrieve the top 3 most ordered products.
+------------------------------------------------------------
+
+QUERY:
+ ProductID,
+    SUM(Quantity) AS TotalQuantity
+FROM OrderDetails
+GROUP BY ProductID
+ORDER BY TotalQuantity DESC
+LIMIT 3;
+OUTPUT:
+
++-----------+---------------+
+| ProductID | TotalQuantity |
++-----------+---------------+
+|       203 |             6 |
+|       205 |             3 |
+|       202 |             2 |
++-----------+---------------+
+REASON:
+
+Based on the inserted OrderDetails table, ProductID 203 has quantities 2 + 4 = 6 units, ProductID 205 has 3 units, and ProductID 202 has 1 + 1 = 2 units. Therefore, the top three products by total quantity are 203 (6), 205 (3), and 202 (2), matching the displayed output. LIMIT 3 returns only three products.
+
+
+------------------------------------------------------------
+QUESTION 5:
+Count how many times a specific product has been sold using COUNT().
+------------------------------------------------------------
+
+QUERY:
+SELECT
+    ProductID,
+    COUNT(*) AS NumberOfOrders
+FROM OrderDetails
+WHERE ProductID = 202
+GROUP BY ProductID;
+
+OUTPUT:
+
++-----------+----------------+
+| ProductID | NumberOfOrders |
++-----------+----------------+
+|       202 |              2 |
++-----------+----------------+
+
+REASON:
+
+The query filters for ProductID = 202. In the inserted OrderDetails table, ProductID 202 appears in OrderDetailID 301 and 304, so COUNT(*) = 2. Here, “times sold” means the number of order-detail records. The total quantity for ProductID 202 is 1 + 1 = 2 units.
+
+
